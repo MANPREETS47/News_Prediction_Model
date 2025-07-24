@@ -1,4 +1,5 @@
 streamlit
 scikit-learn
 nltk
-re
+numpy
+pandas
