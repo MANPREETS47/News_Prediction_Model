@@ -4,10 +4,27 @@ import re
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import nltk 
+import string 
+import os
 
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
+nltk.data.path.append(nltk_data_path)
+
+def download_nltk_data():
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords', download_dir=nltk_data_path)
+
+    try:
+        nltk.data.find('corpora/wordnet')
+    except LookupError:
+        nltk.download('wordnet', download_dir=nltk_data_path)
+
+    try:
+        nltk.data.find('corpora/omw-1.4')
+    except LookupError:
+        nltk.download('omw-1.4', download_dir=nltk_data_path)
 
 with open('fake_real_model.pkl', 'rb') as file:
     model = pickle.load(file)
